@@ -1,4 +1,4 @@
-package jp.te4a.spring.boot.myapp12;
+package jp.te4a.spring.boot.myapp13.validate;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -8,11 +8,11 @@ public class WritterValidate implements ConstraintValidator<Writter,String>{
 	public void initialize(Writter wr){ ok =  wr.ok(); }
 	@Override
 	public boolean isValid(String in,ConstraintValidatorContext cxt){
-		if(in != null){
+		if(in == null){
 			return false;
 		}
 		System.out.println(in.equals(ok));
-		return !in.equals(ok);
+		return in.equals(ok);
 	}
 }
 
