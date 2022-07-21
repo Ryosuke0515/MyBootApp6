@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>一覧画面</title>
+<script type="text/javascript"></script>
+</head>
+<body>
+    <h2>一覧画面</h2>
+    <div th:if="${tokyoService.findAll().size() == 0}">
+        登録データが1件もありません。
+    </div>
+    <table th:if="${tokyoService.findAll().size() >= 1}">
+        <thead>
+            <tr th:each="tokyo : ${tokyo_table}">
+               <td>管理番号:</td>
+               <td>品名：</td>
+               <td>型番：</td>
+               <td>メーカー:</td>
+               <td>仕様：</td>
+               <td>購入日：</td>
+               <td>耐用年数:</td>
+               <td>減価償却：</td>
+               <td>使用不能：</td>
+               <td>貸出可能:</td>
+               <td>設置場所：</td>
+               <td>使用期限：</td>
+            </tr>
+        </thead>
+        <tbody th:each="tokyo : ${equipmentList}" th:object=${tokyo}>
+            <td th:text="${tokyo.machine_id}">MC-000000</td>
+        	<td th:text="${tokyo.name}">タイトルＡ</td>
+        	<td th:text="${tokyo.model_number}">サンプル123</td>
+        	<td th:text="${tokyo.maker}">Ａ社</td>
+        	<td th:text="${tokyo.spec}">サンプルabc123</td>
+        	<td th:text="${tokyo.purchase_date}">2010/01/01</td>
+        	<td th:text="${tokyo.useful_life}">0</td>
+        	<td th:text="${tokyo.depreciation}">終了</td>
+        	<td th:text="${tokyo.availability}">true</td>
+        	<td th:text="${tokyo.loanability}">true</td>
+        	<td th:text="${tokyo.location}">東京本社</td>
+        	<td th:text="${tokyo.expiration_date}">無期限</td>
+        </tbody>
+    </table>
+
+</body>
+</html>
